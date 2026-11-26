@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="canopy">
+  <title>e-Portfolio | นางสาวกันตชา แพงป้อง — คณะโบราณคดี สาขาวิชาประวัติศาสตร์ศิลปะ มหาวิทยาลัยศิลปากร</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Canopy theme tokens (Warm parchment & Silpakorn canopy green) */
+      --background: #faf6ef;
+      --surface-container-low: #f0eae0;
+      --surface-container: #e8e0d2;
+      --surface-container-high: #ddd3c2;
+
+      --on-surface: #2a302b;
+      --on-surface-variant: #4a524b;
+
+      --outline: #737872;
+      --outline-variant: #cbc5b8;
+
+      --primary: #366948;
+      --on-primary: #ffffff;
+      --primary-container: #d8efe0;
+      --on-primary-container: #1f4d30;
+      --secondary: #5c635c;
+      --tertiary: #8f5822;
+      --tertiary-container: #f2d4a7;
+      --on-tertiary-container: #6e3f0c;
+      --error: #b83230;
+      --on-error: #ffffff;
+
+      --data-1: #366948;
+      --data-2: #8f5822;
+      --data-3: #a85438;
+      --data-4: #4b6b78;
+      --data-context: #b5b0a3;
+
+      /* 2. User-requested font: TH Sarabun New (with Sarabun webfont fallback) */
+      --font-headline: 'TH Sarabun New', 'Sarabun', sans-serif;
+      --font-body: 'TH Sarabun New', 'Sarabun', sans-serif;
+      --font-label: 'Geist Mono', 'TH Sarabun New', 'Sarabun', monospace;
+
+      /* Shape */
+      --rounded: 0.625rem;
+      --rounded-lg: 1rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-soft: 0 4px 20px rgb(42 48 43 / 0.06);
+      --shadow-soft-hover: 0 8px 28px rgb(42 48 43 / 0.09);
+      --border-soft: 1px solid rgb(203 197 184 / 0.65);
+      --border-primary-soft: 1px solid rgb(54 105 72 / 0.28);
+      --focus-glow: 0 0 0 4px rgb(54 105 72 / 0.18);
+
+      /* 3. Shared tokens */
+      --positive: #2d6a4f;
+      --warning: #9c6615;
+      --focus: #366948;
+
+      /* Narrative type scale adjusted for TH Sarabun New legibility */
+      --display-size: clamp(2.35rem, 1.5rem + 3vw, 3.65rem);
+      --headline-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.35rem);
+      --subhead-size: clamp(1.3rem, 1.15rem + 0.5vw, 1.55rem);
+      --body-size: clamp(1.125rem, 1.06rem + 0.25vw, 1.25rem);
+      --label-size: clamp(0.8125rem, 0.78rem + 0.12vw, 0.875rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.58;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+      box-shadow: var(--focus-glow);
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg) var(--space-lg) var(--space-3xl);
+      max-width: 1160px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Navigation header */
+    .site-header {
+      background-color: var(--surface-container-low);
+      border-bottom: var(--border-soft);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .nav-shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--on-surface);
+      text-decoration: none;
+    }
+    .brand-lockup:hover { text-decoration: none; }
+    .brand-crest {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--rounded);
+      background-color: var(--primary);
+      color: var(--on-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.15;
+      color: var(--on-surface);
+      display: block;
+    }
+    .brand-sub {
+      font-family: var(--font-label);
+      font-size: 0.78rem;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      display: block;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      min-width: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--border-soft);
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .nav-link:hover,
+    .nav-link.is-active {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      text-decoration: none;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded);
+      border: 0;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-soft);
+    }
+    .btn-primary:hover {
+      background-color: var(--on-primary-container);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft-hover);
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover {
+      background-color: var(--surface-container-high);
+      text-decoration: none;
+    }
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--primary);
+      border: var(--border-primary-soft);
+    }
+    .btn-ghost:hover {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      text-decoration: none;
+    }
+    .btn[disabled] {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--tertiary);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin: 0 0 var(--space-xs);
+    }
+    .kicker-latin {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .display-title {
+      font-size: var(--display-size);
+      font-weight: 700;
+      line-height: 1.12;
+    }
+    .section-title {
+      font-size: var(--headline-size);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .section-lede {
+      font-size: var(--subhead-size);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: var(--space-sm) 0 0;
+      line-height: 1.48;
+    }
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    .mono-tag {
+      font-family: var(--font-label);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      white-space: nowrap;
+    }
+    .mono-tag.is-green {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Cards & Canopy surface hierarchy */
+    .card {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border: 0;
+    }
+    .card.is-leaf-highlight {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .card.is-leaf-highlight h3,
+    .card.is-leaf-highlight h4,
+    .card.is-leaf-highlight .stat-number {
+      color: var(--on-primary-container);
+    }
+    .card.is-interactive {
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .card.is-interactive:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft-hover);
+    }
+
+    /* Section 1: Hero */
+    .hero-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      gap: var(--space-xl);
+      align-items: center;
+      padding-top: var(--space-md);
+    }
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .hero-subtitle {
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      color: var(--primary);
+      margin: var(--space-sm) 0 var(--space-md);
+      line-height: 1.35;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .hero-visual-panel {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-soft);
+    }
+    .portrait-emblem {
+      background-color: var(--background);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      border: var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .portrait-emblem svg {
+      width: 100%;
+      height: auto;
+      max-height: 240px;
+      display: block;
+    }
+    .hero-caption-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .mini-stat {
+      background-color: var(--background);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .mini-stat-label {
+      font-family: var(--font-label);
+      font-size: 0.78rem;
+      color: var(--secondary);
+      display: block;
+    }
+    .mini-stat-val {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      display: block;
+    }
+
+    /* Canopy Almanac / TCAS Strip */
+    .season-strip {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-top: var(--space-lg);
+    }
+    .season-title {
+      font-weight: 700;
+      color: var(--on-surface);
+      display: block;
+    }
+    .season-sub {
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+    }
+    .season-cells {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .season-cell {
+      font-family: var(--font-label);
+      font-size: 0.78rem;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 var(--space-xs);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--space-xs);
+      background-color: var(--surface-container-high);
+      color: var(--secondary);
+    }
+    .season-cell.is-prep {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      font-weight: 700;
+    }
+    .season-cell.is-peak {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      font-weight: 700;
+    }
+
+    /* Inline GitHub Repository & GitHub Pages Drawer */
+    .github-drawer {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+      border: var(--border-primary-soft);
+      display: none;
+    }
+    .github-drawer.is-open {
+      display: grid;
+      gap: var(--space-md);
+      animation: fadeUp var(--dur-short) var(--ease-out);
+    }
+    .repo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      background-color: var(--background);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--border-soft);
+    }
+    .repo-path {
+      font-family: var(--font-label);
+      font-size: 0.92rem;
+      color: var(--on-surface);
+      word-break: break-all;
+    }
+    .copy-feedback {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--positive);
+    }
+    .repo-tree {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .repo-file {
+      background-color: var(--surface-container-low);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .repo-file-name {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--primary);
+    }
+
+    /* Section headings & layout */
+    .section-block {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: var(--border-soft);
+    }
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    /* Section 2: About Me */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .sop-box {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .profile-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-sm);
+    }
+    .profile-table th,
+    .profile-table td {
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--border-soft);
+      vertical-align: top;
+    }
+    .profile-table th {
+      background-color: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: 0.85rem;
+      color: var(--secondary);
+      width: 36%;
+    }
+    .stat-number {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      margin: var(--space-xs) 0;
+    }
+    .checklist-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0 0;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .checklist-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .subject-bars {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .subject-row {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .subject-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .bar-track {
+      height: 10px;
+      background-color: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: var(--rounded-full);
+    }
+    .bar-fill.is-ochre {
+      background-color: var(--tertiary);
+    }
+
+    /* Section 3: Portfolio */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--border-soft);
+      background-color: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .filter-btn:hover {
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .filter-btn[aria-pressed="true"] {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .card-wrapper { container-type: inline-size; }
+    .portfolio-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      cursor: pointer;
+    }
+    .portfolio-card.is-selected {
+      outline: 3px solid var(--primary);
+      outline-offset: 0;
+    }
+    .work-thumb {
+      background-color: var(--background);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      border: var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 132px;
+    }
+    .work-thumb svg {
+      width: 100%;
+      max-height: 104px;
+      display: block;
+    }
+    .work-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .work-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: var(--space-xs) 0;
+    }
+    .work-desc {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: 1.05rem;
+    }
+    .work-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      padding-top: var(--space-sm);
+      border-top: var(--border-soft);
+    }
+
+    /* Inline Portfolio Inspector (Spatial Contiguity) */
+    .inspector-panel {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      box-shadow: var(--shadow-soft);
+    }
+    .inspector-box {
+      background-color: var(--background);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+
+    /* Section 4: Activities */
+    .activities-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .timeline-list {
+      display: grid;
+      gap: var(--space-md);
+      position: relative;
+    }
+    .activity-item {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      border-left: 4px solid var(--primary);
+    }
+    .activity-item.is-ochre {
+      border-left-color: var(--tertiary);
+    }
+    .activity-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .activity-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .activity-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      color: var(--secondary);
+      font-size: 0.95rem;
+      margin-top: var(--space-xs);
+    }
+    .activity-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* Collapsible interview & TCAS prep card */
+    .disclosure-group {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .disclosure-btn {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--border-soft);
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-weight: 700;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      cursor: pointer;
+    }
+    .disclosure-btn:hover {
+      background-color: var(--surface-container);
+    }
+    .disclosure-body {
+      background-color: var(--background);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      border: var(--border-soft);
+      display: none;
+    }
+    .disclosure-body.is-open {
+      display: block;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: var(--border-soft);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.98rem;
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Container query inside cards */
+    @container (min-width: 420px) {
+      .portfolio-card-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+        align-items: center;
+      }
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .hero-section,
+      .about-grid,
+      .inspector-panel,
+      .activities-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .site-header {
+        padding: var(--space-sm) var(--space-md);
+      }
+      .nav-toggle {
+        display: inline-flex;
+      }
+      .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: var(--space-sm);
+        border-top: var(--border-soft);
+      }
+      .nav-menu.is-open {
+        display: flex;
+      }
+      .nav-link {
+        justify-content: flex-start;
+      }
+      .hero-caption-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a href="#hero" class="brand-lockup">
+        <span class="brand-crest" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L16 9H8L12 3Z" fill="currentColor"/>
+            <path d="M6 11H18V14H6V11Z" fill="currentColor"/>
+            <path d="M4 16H20V20H4V16Z" fill="currentColor" opacity="0.85"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-title">กันตชา แพงป้อง</span>
+          <span class="brand-sub">SU Archaeology · Art History e-Portfolio</span>
+        </span>
+      </a>
+
+      <button type="button" class="nav-toggle" id="nav-toggle-btn" aria-expanded="false" aria-controls="primary-nav" onclick="toggleMobileNav()">
+        <i data-lucide="menu" aria-hidden="true"></i>
+        <span>เมนู</span>
+      </button>
+
+      <nav class="nav-menu" id="primary-nav" aria-label="เมนูนำทางหลัก">
+        <a href="#hero" class="nav-link is-active" onclick="closeMobileNav()">หน้าแรก</a>
+        <a href="#about" class="nav-link" onclick="closeMobileNav()">แนะนำตัว</a>
+        <a href="#portfolio" class="nav-link" onclick="closeMobileNav()">ผลงาน</a>
+        <a href="#activities" class="nav-link" onclick="closeMobileNav()">กิจกรรม</a>
+        <button type="button" class="btn btn-primary" onclick="toggleGithubDrawer(true)">
+          <i data-lucide="folder-git-2" aria-hidden="true"></i>
+          <span>คลังผลงาน GitHub</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-grid">
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="hero-section">
+        <div>
+          <div class="hero-meta-row">
+            <span class="mono-tag is-green">
+              <i data-lucide="graduation-cap" aria-hidden="true"></i>
+              <span>TCAS70 · คณะโบราณคดี มหาวิทยาลัยศิลปากร</span>
+            </span>
+            <span class="mono-tag">
+              <span>สาขาวิชาประวัติศาสตร์ศิลปะ (ภาษาไทย ปกติ)</span>
+            </span>
+          </div>
+
+          <h1 id="hero-heading" class="display-title">นางสาวกันตชา แพงป้อง</h1>
+          <p class="hero-subtitle">แฟ้มสะสมผลงานอิเล็กทรอนิกส์ (e-Portfolio) เพื่อศึกษาต่อด้านประวัติศาสตร์ศิลปะ ณ วังท่าพระ</p>
+          <p class="prose">
+            รวบรวมความเรียงวิเคราะห์ประติมากรรมและสถาปัตยกรรมไทย–เอเชียตะวันออกเฉียงใต้ บันทึกการสำรวจภาคสนาม
+            โครงงานดิจิทัลด้านมรดกวัฒนธรรม และประสบการณ์อาสาสมัครพิพิธภัณฑ์ เพื่อสะท้อนความพร้อมในการเรียนรู้ตามปณิธาน
+            “ส่งเสริม สร้างสรรค์ สืบสาน” ของคณะโบราณคดี มหาวิทยาลัยศิลปากร
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="hero-github-btn" onclick="toggleGithubDrawer()">
+              <i data-lucide="folder-git-2" aria-hidden="true"></i>
+              <span>เปิดดูข้อมูลผลงานบน GitHub</span>
+            </button>
+            <a href="#portfolio" class="btn btn-secondary">
+              <i data-lucide="layers" aria-hidden="true"></i>
+              <span>สำรวจแฟ้มผลงาน 6 ชิ้น</span>
+            </a>
+            <a href="#about" class="btn btn-ghost">
+              <span>อ่านประวัติและ GPAX</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-visual-panel" aria-label="ภาพประกอบสัญลักษณ์ทางประวัติศาสตร์ศิลปะและข้อมูลสรุป">
+          <div class="portrait-emblem">
+            <svg viewBox="0 0 320 220" role="img" aria-hidden="true">
+              <rect x="8" y="8" width="304" height="204" rx="12" fill="var(--surface-container-low)"/>
+              <circle cx="248" cy="60" r="34" fill="var(--tertiary-container)"/>
+              <path d="M36 184 H284" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Lotus-bud stupa & classical arch motif -->
+              <path d="M160 28 L164 46 C173 54 176 66 170 78 H150 C144 66 147 54 156 46 Z" fill="var(--primary)"/>
+              <rect x="142" y="80" width="36" height="10" rx="2" fill="var(--tertiary)"/>
+              <path d="M132 94 H188 L198 122 H122 Z" fill="var(--primary)" opacity="0.88"/>
+              <rect x="112" y="124" width="96" height="60" rx="4" fill="var(--surface-container-high)" stroke="var(--primary)" stroke-width="2"/>
+              <path d="M144 184 V146 C144 136 176 136 176 146 V184 Z" fill="var(--primary)"/>
+              <!-- Flanking pillars / Thai gable silhouette -->
+              <rect x="64" y="114" width="26" height="70" rx="3" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="1.5"/>
+              <path d="M58 114 L77 92 L96 114 Z" fill="var(--tertiary)"/>
+              <rect x="230" y="114" width="26" height="70" rx="3" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="1.5"/>
+              <path d="M224 114 L243 92 L262 114 Z" fill="var(--tertiary)"/>
+              <!-- Monogram seal -->
+              <rect x="24" y="24" width="58" height="24" rx="4" fill="var(--primary)"/>
+              <text x="53" y="40" text-anchor="middle" fill="var(--on-primary)" font-family="Geist Mono, monospace" font-size="10" font-weight="600">SU · 70</text>
+            </svg>
+          </div>
+          <div class="hero-caption-grid">
+            <div class="mini-stat">
+              <span class="mini-stat-label">GPAX (5 ภาคเรียน · ตัวอย่าง)</span>
+              <span class="mini-stat-val">3.86 / 4.00</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat-label">เกณฑ์ขั้นต่ำสาขาวิชา</span>
+              <span class="mini-stat-val">≥ 2.50 (ผ่าน)</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat-label">ผลงานวิจัยและวิเคราะห์ศิลปะ</span>
+              <span class="mini-stat-val">6 ชิ้นงาน</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat-label">กิจกรรมศิลปวัฒนธรรม</span>
+              <span class="mini-stat-val">5+ โครงการ</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Canopy Phenology / 10-Page Portfolio & TCAS70 Alignment Strip -->
+      <div class="season-strip" aria-label="แถบสถานะการจัดทำแฟ้มสะสมผลงาน 10 หน้าตามแนวทางคณะโบราณคดี">
+        <div>
+          <span class="season-title">โครงสร้างแฟ้มสะสมผลงานมาตรฐาน 10 หน้า (ไม่รวมปก) และความพร้อมรับตรง TCAS70</span>
+          <span class="season-sub">สีส้มอ่อน = ขั้นเตรียมข้อมูลและเอกสาร · สีเขียวเข้ม = หน้าหลักพร้อมยื่น (ปพ.1, ประวัติ, ผลงาน, กิจกรรม, จดหมายแนะนำตัว)</span>
+        </div>
+        <div class="season-cells" role="list" aria-label="หน้า 1 ถึง 10">
+          <span class="season-cell is-prep" role="listitem" title="ปกและสารบัญ">P0</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 1: ประวัติส่วนตัว">01</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 2: ประวัติการศึกษาและ ปพ.1">02</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 3: จดหมายแนะนำตัว">03</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 4–5: ผลงานวิเคราะห์ศิลปะ">04</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 5: งานภาคสนามโบราณคดี">05</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 6: สื่อดิจิทัลและบทความ">06</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 7–8: กิจกรรมพิพิธภัณฑ์และค่าย">07</span>
+          <span class="season-cell is-peak" role="listitem" title="หน้า 8: อาสาสมัครชุมชน">08</span>
+          <span class="season-cell is-prep" role="listitem" title="หน้า 9: ประกาศนียบัตร">09</span>
+          <span class="season-cell is-prep" role="listitem" title="หน้า 10: อ้างอิงและเตรียมสัมภาษณ์">10</span>
+        </div>
+      </div>
+
+      <!-- Inline GitHub Repository & GitHub Pages Drawer -->
+      <div class="github-drawer" id="github-drawer" aria-live="polite">
+        <div class="section-header-row">
+          <div>
+            <p class="kicker kicker-latin">GITHUB REPOSITORY &amp; GITHUB PAGES</p>
+            <h3>คลังรหัสและเอกสารผลงานบน GitHub (พร้อมเผยแพร่เป็นเว็บไซต์ทันที)</h3>
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="toggleGithubDrawer(false)">
+            <i data-lucide="x" aria-hidden="true"></i>
+            <span>ปิดแผงนี้</span>
+          </button>
+        </div>
+
+        <div class="repo-bar">
+          <span class="repo-path" id="github-repo-text">github.com/kantacha-phaengpong/su-art-history-eportfolio</span>
+          <div style="display:flex; gap: var(--space-sm); align-items:center; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary" onclick="copyRepoPath()">
+              <i data-lucide="copy" aria-hidden="true"></i>
+              <span>คัดลอกที่อยู่ GitHub</span>
+            </button>
+            <span class="copy-feedback" id="copy-status" role="status"></span>
+          </div>
+        </div>
+
+        <div class="repo-tree">
+          <div class="repo-file">
+            <span class="repo-file-name">index.html</span>
+            <span>ไฟล์เว็บ e-Portfolio แบบ Single-Page HTML (ไฟล์นี้พร้อมอัปโหลดขึ้น GitHub Pages ทันที)</span>
+          </div>
+          <div class="repo-file">
+            <span class="repo-file-name">/papers/dvaravati-dharmachakra.md</span>
+            <span>บทความวิเคราะห์เปรียบเทียบธรรมจักรศิลาสมัยทวารวดี</span>
+          </div>
+          <div class="repo-file">
+            <span class="repo-file-name">/fieldnotes/sukhothai-lotus-stupa.pdf</span>
+            <span>สมุดบันทึกภาคสนามและผังลายเส้นเจดีย์ทรงพุ่มข้าวบิณฑ์</span>
+          </div>
+          <div class="repo-file">
+            <span class="repo-file-name">/archive/ratchadamnoen-murals/</span>
+            <span>คลังภาพถ่ายความละเอียดสูงและคำอธิบายจิตรกรรมฝาผนัง</span>
+          </div>
+        </div>
+
+        <p class="prose" style="margin: 0;">
+          <strong>วิธีเผยแพร่ผ่าน GitHub Pages ทันที:</strong> บันทึกไฟล์นี้ในชื่อ <code>index.html</code> แล้วอัปโหลดเข้า Repository ใหม่บน GitHub
+          จากนั้นไปที่ <code>Settings → Pages → Deploy from a branch (main / root)</code> เว็บไซต์ e-Portfolio ของนางสาวกันตชา แพงป้อง จะออนไลน์ภายใน 1–2 นาทีโดยไม่ต้องติดตั้งเครื่องมือเสริม
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT ME -->
+    <section id="about" class="section-block reveal" aria-labelledby="about-heading">
+      <div>
+        <p class="kicker">02 · แนะนำตัวและจุดมุ่งหมายทางการศึกษา</p>
+        <h2 id="about-heading" class="section-title">แรงบันดาลใจจากโบราณวัตถุสู่การเป็นนักประวัติศาสตร์ศิลปะ</h2>
+        <p class="section-lede">
+          ข้อมูลประวัติส่วนตัว ผลการเรียน ปพ.1 (ข้อมูลตัวอย่าง) และจดหมายแนะนำตัวที่สะท้อนความเชื่อมโยงระหว่างศิลปะตะวันออก ตะวันตก และศิลปะร่วมสมัย
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card sop-box">
+          <h3>จดหมายแนะนำตัว (Statement of Purpose)</h3>
+          <p class="prose">
+            ความสนใจในประวัติศาสตร์ศิลปะของดิฉันเริ่มต้นจากการได้ยืนพินิจพระพุทธรูปและธรรมจักรศิลาสมัยทวารวดีในพิพิธภัณฑสถานแห่งชาติ
+            ความเรียบง่ายของเส้นสายที่แฝงด้วยคติพุทธศาสนาและการรับ–ปรับอิทธิพลศิลปะอินเดียทำให้ดิฉันตั้งคำถามว่า
+            “งานศิลปะหนึ่งชิ้นสะท้อนโลกทัศน์ การค้า และศรัทธาของผู้คนในยุคสมัยนั้นได้อย่างไร”
+          </p>
+          <p class="prose">
+            ตลอดระดับมัธยมศึกษาตอนปลาย ดิฉันจึงฝึกทักษะการอ่านรูปแบบศิลปกรรม (Stylistic Analysis) ควบคู่กับการสืบค้นเอกสารชั้นต้น
+            การถ่ายภาพและสเก็ตช์ผังโบราณสถาน รวมถึงการใช้ภาษาอังกฤษเพื่อเปรียบเทียบงานวิจัยด้านศิลปะตะวันออก–ตะวันตก และศิลปะร่วมสมัย
+            ดิฉันมุ่งหวังที่จะเข้ามาศึกษาต่อใน<strong>สาขาวิชาประวัติศาสตร์ศิลปะ คณะโบราณคดี มหาวิทยาลัยศิลปากร (วังท่าพระ)</strong>
+            เพื่อต่อยอดสู่การทำงานด้านภัณฑารักษ์ การอนุรักษ์มรดกทางวัฒนธรรม และการวิจัยเชิงวิชาการอย่างเป็นระบบ
+          </p>
+
+          <table class="profile-table" aria-label="ข้อมูลประวัติผู้สมัคร">
+            <tbody>
+              <tr>
+                <th scope="row">ชื่อ–นามสกุล</th>
+                <td>นางสาวกันตชา แพงป้อง (Kantacha Phaengpong)</td>
+              </tr>
+              <tr>
+                <th scope="row">วุฒิการศึกษา</th>
+                <td>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6 แผนการเรียนศิลป์–ภาษา (ข้อมูลตัวอย่าง)</td>
+              </tr>
+              <tr>
+                <th scope="row">เป้าหมายการรับเข้า</th>
+                <td>คณะโบราณคดี สาขาวิชาประวัติศาสตร์ศิลปะ ม.ศิลปากร (TCAS รอบ Portfolio / โควตา / Admission)</td>
+              </tr>
+              <tr>
+                <th scope="row">ความถนัดเฉพาะทาง</th>
+                <td>ประติมาณวิทยาศิลปะไทย–เอเชียอาคเนย์, การบันทึกผังโบราณสถาน, การจัดทำคลังข้อมูลดิจิทัล</td>
+              </tr>
+              <tr>
+                <th scope="row">ช่องทางติดต่อ</th>
+                <td>อีเมลตัวอย่าง: kantacha.art.portfolio@example.com · คลังโค้ด: github.com/kantacha-phaengpong</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:grid; gap: var(--space-lg);">
+          <!-- Canopy's single Pale-Leaf Highlight Card -->
+          <article class="card is-leaf-highlight">
+            <span class="kicker" style="color: var(--on-primary-container);">ความพร้อมตามเกณฑ์คณะโบราณคดี ม.ศิลปากร</span>
+            <p class="stat-number">GPAX 3.86</p>
+            <p style="margin: 0;">สูงกว่าเกณฑ์ขั้นต่ำของสาขาวิชาประวัติศาสตร์ศิลปะ (กำหนด GPAX ≥ 2.50)</p>
+            <ul class="checklist-list">
+              <li>
+                <i data-lucide="check" aria-hidden="true"></i>
+                <span>ครบ 4 องค์ประกอบ Portfolio (ประวัติ, ปพ.1, กิจกรรมศิลปวัฒนธรรม, จดหมายแนะนำตัว)</span>
+              </li>
+              <li>
+                <i data-lucide="check" aria-hidden="true"></i>
+                <span>เตรียมความพร้อมรายวิชาหลัก TCAS: TGAT และ A-Level (สังคมศึกษา, ภาษาไทย, ภาษาอังกฤษ)</span>
+              </li>
+              <li>
+                <i data-lucide="check" aria-hidden="true"></i>
+                <span>เตรียมหัวข้อสัมภาษณ์ครบทั้งศิลปะโลกตะวันออก–ตะวันตก และศิลปะร่วมสมัย</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>ผลการเรียนกลุ่มสาระที่เกี่ยวข้อง (ปพ.1 · ข้อมูลตัวอย่าง)</h3>
+            <p class="work-desc" style="margin-top: var(--space-xs);">สอดคล้องกับรายวิชาคัดเลือกในระบบ TCAS รอบ Quota และ Admission ของ ม.ศิลปากร</p>
+            <div class="subject-bars">
+              <div class="subject-row">
+                <div class="subject-head">
+                  <span>สังคมศึกษา ศาสนา และวัฒนธรรม</span>
+                  <span>4.00</span>
+                </div>
+                <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width: 100%;"></div></div>
+              </div>
+              <div class="subject-row">
+                <div class="subject-head">
+                  <span>ภาษาไทย (การอ่านวิเคราะห์และเขียนเชิงวิชาการ)</span>
+                  <span>3.92</span>
+                </div>
+                <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width: 98%;"></div></div>
+              </div>
+              <div class="subject-row">
+                <div class="subject-head">
+                  <span>ภาษาอังกฤษ (การอ่านบทความวิชาการ)</span>
+                  <span>3.80</span>
+                </div>
+                <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width: 95%;"></div></div>
+              </div>
+              <div class="subject-row">
+                <div class="subject-head">
+                  <span>ทัศนศิลป์และประวัติศาสตร์ศิลปะพื้นฐาน</span>
+                  <span>4.00</span>
+                </div>
+                <div class="bar-track" aria-hidden="true"><div class="bar-fill is-ochre" style="width: 100%;"></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PORTFOLIO -->
+    <section id="portfolio" class="section-block reveal" aria-labelledby="portfolio-heading">
+      <div class="section-header-row">
+        <div>
+          <p class="kicker">03 · ผลงานวิชาการและสร้างสรรค์</p>
+          <h2 id="portfolio-heading" class="section-title">คลังผลงานประวัติศาสตร์ศิลปะและโบราณคดี (6 ชิ้นงาน)</h2>
+          <p class="section-lede">
+            กรองดูตามหมวดหมู่หรือคลิกที่การ์ดผลงานแต่ละชิ้นเพื่ออ่านวิธีการศึกษา บทวิเคราะห์ และดูตำแหน่งไฟล์บน GitHub
+          </p>
+        </div>
+        <div class="filter-bar" role="group" aria-label="กรองผลงานตามหมวดหมู่">
+          <button type="button" class="filter-btn" aria-pressed="true" onclick="filterWorks('all', this)">ทั้งหมด (6)</button>
+          <button type="button" class="filter-btn" aria-pressed="false" onclick="filterWorks('analysis', this)">วิเคราะห์ศิลปกรรม (2)</button>
+          <button type="button" class="filter-btn" aria-pressed="false" onclick="filterWorks('fieldwork', this)">ภาคสนามโบราณคดี (2)</button>
+          <button type="button" class="filter-btn" aria-pressed="false" onclick="filterWorks('digital', this)">สื่อดิจิทัลและวิจารณ์ (2)</button>
+        </div>
+      </div>
+
+      <div class="card-grid" id="portfolio-grid">
+        <!-- Card 1 -->
+        <div class="card-wrapper" data-category="analysis">
+          <article class="card is-interactive portfolio-card is-selected" id="work-card-0" tabindex="0" onclick="selectWork(0)" onkeydown="handleCardKey(event, 0)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <circle cx="90" cy="48" r="34" fill="none" stroke="var(--primary)" stroke-width="3"/>
+                  <circle cx="90" cy="48" r="10" fill="var(--tertiary)"/>
+                  <path d="M90 14 V82 M56 48 H124 M66 24 L114 72 M114 24 L66 72" stroke="var(--primary)" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag is-green">วิเคราะห์ศิลปกรรม</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2569</span>
+              </div>
+              <h3 class="work-title">การศึกษาเปรียบเทียบธรรมจักรศิลาสมัยทวารวดีกับศิลปะอมราวดี–คุปตะ</h3>
+              <p class="work-desc">บทความวิเคราะห์พัฒนาการลวดลายพันธุ์พฤกษา ซี่กำ และแท่นกวางหมอบในบริบทพุทธศิลป์ยุคแรกเริ่ม</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">PDF · 12 หน้า</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(0);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-wrapper" data-category="fieldwork">
+          <article class="card is-interactive portfolio-card" id="work-card-1" tabindex="0" onclick="selectWork(1)" onkeydown="handleCardKey(event, 1)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <path d="M90 12 L94 28 C100 34 102 44 96 52 H84 C78 44 80 34 86 28 Z" fill="var(--primary)"/>
+                  <rect x="74" y="54" width="32" height="10" fill="var(--tertiary)"/>
+                  <rect x="64" y="66" width="52" height="18" fill="var(--surface-container-high)" stroke="var(--primary)" stroke-width="2"/>
+                  <line x1="28" y1="84" x2="152" y2="84" stroke="var(--outline)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag">ภาคสนามโบราณคดี</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2568</span>
+              </div>
+              <h3 class="work-title">บันทึกการสำรวจและสเก็ตช์ผังเจดีย์ทรงพุ่มข้าวบิณฑ์ ณ สุโขทัย</h3>
+              <p class="work-desc">การวัดสัดส่วนฐานเขียง เรือนธาตุ และยอดดอกบัวตูมเพื่อเปรียบเทียบความต่างระหว่างวัดมหาธาตุกับวัดตระพังเงิน</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">Field Sketch · SVG</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(1);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-wrapper" data-category="analysis">
+          <article class="card is-interactive portfolio-card" id="work-card-2" tabindex="0" onclick="selectWork(2)" onkeydown="handleCardKey(event, 2)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <rect x="24" y="24" width="132" height="48" rx="4" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2"/>
+                  <path d="M40 56 Q65 36 90 54 T140 52" fill="none" stroke="var(--tertiary)" stroke-width="2.5"/>
+                  <circle cx="90" cy="38" r="7" fill="var(--primary)"/>
+                  <path d="M90 45 V62" stroke="var(--primary)" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag is-green">วิเคราะห์ศิลปกรรม</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2568</span>
+              </div>
+              <h3 class="work-title">ถอดรหัสประติมานวิทยาทับหลังนารายณ์บรรทมสินธุ์ ปราสาทพนมรุ้ง</h3>
+              <p class="work-desc">แผนภาพจำแนกองค์ประกอบศิลป์แบบบาปวน–นครวัดและการเล่าเรื่องการกำเนิดพระพรหมในคติไวษณพนิกาย</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">Diagram · Study</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(2);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card-wrapper" data-category="digital">
+          <article class="card is-interactive portfolio-card" id="work-card-3" tabindex="0" onclick="selectWork(3)" onkeydown="handleCardKey(event, 3)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <rect x="26" y="16" width="128" height="64" rx="6" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2"/>
+                  <rect x="38" y="28" width="46" height="40" rx="3" fill="var(--primary-container)"/>
+                  <line x1="94" y1="34" x2="142" y2="34" stroke="var(--primary)" stroke-width="2.5"/>
+                  <line x1="94" y1="46" x2="136" y2="46" stroke="var(--secondary)" stroke-width="2"/>
+                  <line x1="94" y1="58" x2="126" y2="58" stroke="var(--tertiary)" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag is-green">สื่อดิจิทัลและวิจารณ์</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2569</span>
+              </div>
+              <h3 class="work-title">นิทรรศการเว็บจำลอง: จิตรกรรมฝาผนังสมัยรัตนโกสินทร์ตอนต้น</h3>
+              <p class="work-desc">โครงงาน HTML/CSS จัดหมวดหมู่สีฝุ่นธรรมชาติ เส้นสินเทา และเรื่องราวทศชาติชาดก ณ วัดสุวรรณาราม</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">Web Archive · HTML</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(3);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card-wrapper" data-category="digital">
+          <article class="card is-interactive portfolio-card" id="work-card-4" tabindex="0" onclick="selectWork(4)" onkeydown="handleCardKey(event, 4)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <polygon points="48,74 78,24 108,74" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2"/>
+                  <circle cx="116" cy="46" r="22" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag is-green">สื่อดิจิทัลและวิจารณ์</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2569</span>
+              </div>
+              <h3 class="work-title">บทวิจารณ์ศิลปะร่วมสมัยไทย: พื้นที่สาธารณะและความทรงจำท้องถิ่น</h3>
+              <p class="work-desc">ความเรียงวิเคราะห์งานศิลปะจัดวาง (Installation Art) ในเทศกาลศิลปะร่วมสมัยกับบทสนทนาทางประวัติศาสตร์</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">Essay · 3,200 คำ</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(4);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card-wrapper" data-category="fieldwork">
+          <article class="card is-interactive portfolio-card" id="work-card-5" tabindex="0" onclick="selectWork(5)" onkeydown="handleCardKey(event, 5)">
+            <div>
+              <div class="work-thumb">
+                <svg viewBox="0 0 180 96" aria-hidden="true">
+                  <rect x="34" y="20" width="32" height="56" rx="2" fill="var(--surface-container)" stroke="var(--primary)" stroke-width="1.5"/>
+                  <rect x="74" y="20" width="32" height="56" rx="2" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="1.5"/>
+                  <rect x="114" y="20" width="32" height="56" rx="2" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="work-meta" style="margin-top: var(--space-md);">
+                <span class="mono-tag">ภาคสนามโบราณคดี</span>
+                <span class="kicker" style="margin:0;">พ.ศ. 2569</span>
+              </div>
+              <h3 class="work-title">ฐานข้อมูลภาพถ่ายโบราณสถานและการจัดทำคำอธิบายภาพ (Cataloguing)</h3>
+              <p class="work-desc">จัดทำทะเบียนข้อมูลโบราณสถานย่านพระนคร–วังท่าพระตามมาตรฐาน Metadata สำหรับสืบค้นออนไลน์</p>
+            </div>
+            <div class="work-actions">
+              <span class="mono-tag">JSON · Dataset</span>
+              <button type="button" class="btn btn-ghost" onclick="event.stopPropagation(); selectWorkAndShowRepo(5);">
+                <i data-lucide="folder-git-2" aria-hidden="true"></i>
+                <span>ดูใน GitHub</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Inline Detail Inspector -->
+      <div class="inspector-panel" id="work-inspector" aria-live="polite">
+        <div>
+          <span class="kicker" id="insp-kicker">รายละเอียดผลงานที่เลือก · วิเคราะห์ศิลปกรรม</span>
+          <h3 id="insp-title" style="font-size: 1.55rem; margin-bottom: var(--space-sm);">การศึกษาเปรียบเทียบธรรมจักรศิลาสมัยทวารวดีกับศิลปะอมราวดี–คุปตะ</h3>
+          <p id="insp-summary" class="prose" style="margin: 0 0 var(--space-md);">
+            งานศึกษาชิ้นนี้เปรียบเทียบธรรมจักรศิลาที่พบในภาคกลางของไทย (นครปฐม–อู่ทอง) กับต้นแบบศิลปะอินเดียใต้และอินเดียภาคเหนือ
+            โดยสังเกตการเปลี่ยนแปลงของลวดลายดอกไม้สี่กลีบ ขอบวงล้อ และแท่นรองรับรูปกวางหมอบ เพื่อทำความเข้าใจการปรับเปลี่ยนเชิงช่างท้องถิ่นทวารวดี
+          </p>
+          <p id="insp-method" class="work-desc">
+            <strong>ระเบียบวิธีและแหล่งอ้างอิง:</strong> สำรวจวัตถุจริง ณ พิพิธภัณฑสถานแห่งชาติ พระปฐมเจดีย์ และเทียบเคียงแนวคิดจากตำราศิลปะสมัยทวารวดีของคณาจารย์คณะโบราณคดี
+          </p>
+        </div>
+        <div class="inspector-box">
+          <span class="kicker kicker-latin" style="margin:0;">GITHUB REPOSITORY PATH</span>
+          <code id="insp-repo" class="repo-path">github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/papers/dvaravati-dharmachakra</code>
+          <p id="insp-deliverable" style="margin: 0; font-size: 0.98rem; color: var(--on-surface-variant);">
+            ไฟล์ประกอบ: บทความฉบับเต็ม (PDF), ตารางเปรียบเทียบลวดลาย (CSV), ภาพถ่ายพร้อมคำอธิบาย (12 หน้า)
+          </p>
+          <div style="display:flex; gap: var(--space-sm); flex-wrap:wrap; margin-top: var(--space-xs);">
+            <button type="button" class="btn btn-primary" onclick="copySelectedWorkRepo()">
+              <i data-lucide="copy" aria-hidden="true"></i>
+              <span>คัดลอกลิงก์ GitHub ของชิ้นงานนี้</span>
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="toggleGithubDrawer(true)">
+              <span>เปิดคู่มือเผยแพร่ GitHub Pages</span>
+            </button>
+          </div>
+          <span class="copy-feedback" id="insp-copy-status" role="status"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ACTIVITIES -->
+    <section id="activities" class="section-block reveal" aria-labelledby="activities-heading">
+      <div>
+        <p class="kicker">04 · กิจกรรมและประสบการณ์ด้านศิลปวัฒนธรรม</p>
+        <h2 id="activities-heading" class="section-title">เส้นทางการเรียนรู้ภาคสนาม พิพิธภัณฑ์ และจิตอาสา</h2>
+        <p class="section-lede">
+          ประสบการณ์จริงนอกห้องเรียนที่บ่มเพาะทักษะการสังเกต การทำงานร่วมกับชุมชน และการสื่อสารคุณค่ามรดกทางวัฒนธรรม (ข้อมูลตัวอย่าง)
+        </p>
+      </div>
+
+      <div class="activities-layout">
+        <div class="timeline-list">
+          <article class="activity-item">
+            <div class="activity-top">
+              <span class="mono-tag is-green">ค่ายวิชาการ · เกียรติบัตร</span>
+              <span class="kicker" style="margin:0;">ตุลาคม 2569</span>
+            </div>
+            <h3 class="activity-title">ค่ายเยาวชน “รักษ์มรดกศิลป์ วังท่าพระ” (อบรมพื้นฐานประวัติศาสตร์ศิลปะ)</h3>
+            <p class="work-desc">
+              เข้าร่วมฝึกปฏิบัติการอ่านรูปแบบสถาปัตยกรรมไทยประเพณี การแยกยุคสมัยพระพุทธรูป และฟังเสวนาแนวทางการศึกษาต่อคณะโบราณคดี
+            </p>
+            <div class="activity-meta">
+              <span><i data-lucide="map-pin" aria-hidden="true"></i> ย่านวังท่าพระ กรุงเทพมหานคร</span>
+              <span><i data-lucide="calendar" aria-hidden="true"></i> 24 ชั่วโมงการเรียนรู้</span>
+            </div>
+          </article>
+
+          <article class="activity-item is-ochre">
+            <div class="activity-top">
+              <span class="mono-tag">จิตอาสาพิพิธภัณฑ์</span>
+              <span class="kicker" style="margin:0;">พฤษภาคม – สิงหาคม 2569</span>
+            </div>
+            <h3 class="activity-title">ยุวมัคคุเทศก์อาสา พิพิธภัณฑสถานแห่งชาติ พระนคร (หมวดประติมากรรมศิลา)</h3>
+            <p class="work-desc">
+              ช่วยอำนวยความสะดวกและสรุปข้อมูลเบื้องต้นเรื่องศิลปะทวารวดี ศรีวิชัย และลพบุรี แก่นักเรียนและผู้เข้าชมรุ่นเยาว์
+            </p>
+            <div class="activity-meta">
+              <span><i data-lucide="map-pin" aria-hidden="true"></i> เขตพระนคร กรุงเทพมหานคร</span>
+              <span><i data-lucide="award" aria-hidden="true"></i> หนังสือรับรองจิตอาสา 40 ชม.</span>
+            </div>
+          </article>
+
+          <article class="activity-item">
+            <div class="activity-top">
+              <span class="mono-tag is-green">การแข่งขันวิชาการ</span>
+              <span class="kicker" style="margin:0;">มกราคม 2569</span>
+            </div>
+            <h3 class="activity-title">รางวัลรองชนะเลิศอันดับ 1 การแข่งขันตอบปัญหาประวัติศาสตร์ศิลปะและวัฒนธรรมอาเซียน</h3>
+            <p class="work-desc">
+              ตัวแทนโรงเรียนแข่งขันด้านความรู้สถาปัตยกรรมโบราณสถานในเอเชียตะวันออกเฉียงใต้ (พุกาม–อังกอร์–บุโรพุทโธ–สุโขทัย)
+            </p>
+            <div class="activity-meta">
+              <span><i data-lucide="map-pin" aria-hidden="true"></i> ระดับภูมิภาค</span>
+              <span><i data-lucide="award" aria-hidden="true"></i> โล่รางวัลและเกียรติบัตร</span>
+            </div>
+          </article>
+
+          <article class="activity-item is-ochre">
+            <div class="activity-top">
+              <span class="mono-tag">ภาคสนามและชุมชน</span>
+              <span class="kicker" style="margin:0;">กันยายน 2568</span>
+            </div>
+            <h3 class="activity-title">โครงการสำรวจ “วัด–วัง–ชุมชน” และภูมิปัญญางานช่างรอบเกาะรัตนโกสินทร์</h3>
+            <p class="work-desc">
+              ลงพื้นที่สัมภาษณ์ช่างฝีมือและเก็บข้อมูลเอกสารชั้นต้นเรื่องงานประดับมุกและลายรดน้ำ เพื่อจัดทำบอร์ดนิทรรศการประจำโรงเรียน
+            </p>
+            <div class="activity-meta">
+              <span><i data-lucide="map-pin" aria-hidden="true"></i> เกาะรัตนโกสินทร์</span>
+              <span><i data-lucide="book-open" aria-hidden="true"></i> รายงานกลุ่ม 18 หน้า</span>
+            </div>
+          </article>
+
+          <article class="activity-item">
+            <div class="activity-top">
+              <span class="mono-tag is-green">อบรมเชิงปฏิบัติการ</span>
+              <span class="kicker" style="margin:0;">มีนาคม 2568</span>
+            </div>
+            <h3 class="activity-title">Workshop “การอนุรักษ์เอกสารโบราณและภาพถ่ายโบราณสถานเบื้องต้น”</h3>
+            <p class="work-desc">
+              เรียนรู้การบันทึกค่าสี การจัดเก็บเอกสารปลอดกรด และการทำดัชนีภาพถ่ายเพื่อการอนุรักษ์ข้อมูลมรดกวัฒนธรรม
+            </p>
+            <div class="activity-meta">
+              <span><i data-lucide="map-pin" aria-hidden="true"></i> ศูนย์สารสนเทศมรดกวัฒนธรรม</span>
+              <span><i data-lucide="award" aria-hidden="true"></i> ประกาศนียบัตรผ่านการอบรม</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Side panel: TCAS & Interview Prep Reference -->
+        <aside class="card" style="display:grid; gap: var(--space-md);">
+          <div>
+            <span class="kicker">ข้อมูลอ้างอิงการสมัคร TCAS · ม.ศิลปากร</span>
+            <h3>เช็กลิสต์เตรียมยื่นและสอบสัมภาษณ์</h3>
+            <p class="work-desc" style="margin-top: var(--space-xs);">
+              สรุปองค์ประกอบสำคัญตามเกณฑ์สาขาวิชาประวัติศาสตร์ศิลปะ คณะโบราณคดี (จำนวนรับรวม TCAS70: 40 ที่นั่ง)
+            </p>
+          </div>
+
+          <div class="disclosure-group">
+            <button type="button" class="disclosure-btn" aria-expanded="true" aria-controls="prep-panel-1" onclick="toggleDisclosure('prep-panel-1', this)">
+              <span>1. สัดส่วนคะแนน TCAS70 (รอบ Quota และ Admission)</span>
+              <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="disclosure-body is-open" id="prep-panel-1">
+              <ul style="margin:0; padding-left: var(--space-lg); display:grid; gap: var(--space-xs);">
+                <li><strong>รอบ 2 Quota:</strong> โครงการเสริมสร้างศักยภาพทางวิชาการด้านวัฒนธรรมและภาษา รับ 10 ที่นั่ง (รับผู้จบ ม.6 และ ปวช.)</li>
+                <li><strong>รอบ 3 Admission:</strong> รับ 30 ที่นั่ง ใช้ GPAX 10% + TGAT 45% + ผลรวม A-Level (สังคมศึกษา, ภาษาไทย, ภาษาอังกฤษ) 45%</li>
+                <li><strong>เกณฑ์ขั้นต่ำ:</strong> GPAX ไม่ต่ำกว่า 2.50</li>
+              </ul>
+            </div>
+
+            <button type="button" class="disclosure-btn" aria-expanded="false" aria-controls="prep-panel-2" onclick="toggleDisclosure('prep-panel-2', this)">
+              <span>2. หัวข้อเตรียมสอบสัมภาษณ์เฉพาะสาขา</span>
+              <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="disclosure-body" id="prep-panel-2">
+              <ul style="margin:0; padding-left: var(--space-lg); display:grid; gap: var(--space-xs);">
+                <li>ความรู้พื้นฐานศิลปะโลกตะวันออก (อินเดีย จีน ญี่ปุ่น เอเชียตะวันออกเฉียงใต้) และศิลปะตะวันตก</li>
+                <li>มุมมองต่อศิลปะร่วมสมัยและบทบาทพิพิธภัณฑ์ในปัจจุบัน</li>
+                <li>เอกสารตัวจริงวันสัมภาษณ์: บัตรประจำตัวประชาชน และ ปพ.1 ฉบับจริง</li>
+              </ul>
+            </div>
+
+            <button type="button" class="disclosure-btn" aria-expanded="false" aria-controls="prep-panel-3" onclick="toggleDisclosure('prep-panel-3', this)">
+              <span>3. มาตรฐานไฟล์ Portfolio (กรณีส่งเอกสาร PDF)</span>
+              <i data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="disclosure-body" id="prep-panel-3">
+              <ul style="margin:0; padding-left: var(--space-lg); display:grid; gap: var(--space-xs);">
+                <li>ความยาวมาตรฐาน 10 หน้า (ไม่รวมปก) ขนาดกระดาษ A4 เรียงลำดับเป็นระบบ</li>
+                <li>ขนาดไฟล์ PDF ไม่เกิน 10 MB พร้อมหลักฐานกิจกรรมและจดหมายแนะนำตัวที่ชัดเจน</li>
+                <li>ตรวจสอบประกาศทางการของคณะโบราณคดี (วังท่าพระ) และสำนักทดสอบฯ ม.ศิลปากร ในแต่ละรอบ</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="padding-top: var(--space-sm); border-top: var(--border-soft); display:flex; flex-direction:column; gap: var(--space-sm);">
+            <button type="button" class="btn btn-primary" onclick="toggleGithubDrawer(true); window.scrollTo({top: 0, behavior: 'smooth'});">
+              <i data-lucide="folder-git-2" aria-hidden="true"></i>
+              <span>กลับไปเปิดคลังผลงาน GitHub</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div>
+        <strong>e-Portfolio ของ นางสาวกันตชา แพงป้อง</strong> — จัดทำเพื่อเตรียมยื่นเข้าศึกษาต่อ หลักสูตรศิลปศาสตรบัณฑิต สาขาวิชาประวัติศาสตร์ศิลปะ คณะโบราณคดี มหาวิทยาลัยศิลปากร (วังท่าพระ เลขที่ 31 ถนนหน้าพระลาน แขวงพระบรมมหาราชวัง เขตพระนคร กรุงเทพฯ 10200)
+      </div>
+      <div>
+        ข้อมูลเกณฑ์การรับสมัครอ้างอิงจาก: เว็บไซต์คณะโบราณคดี มหาวิทยาลัยศิลปากร (archae.su.ac.th), สำนักทดสอบทางการศึกษาและวัดผล ม.ศิลปากร (admission.su.ac.th), TCAS Starter (tcas.in.th), Dek-D TCAS และ DreamNestHub (ข้อมูล ณ พฤศจิกายน 2569 — รายละเอียดส่วนบุคคล ผลงาน และกิจกรรมเป็นข้อมูลตัวอย่างสำหรับเทมเพลต e-Portfolio)
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const WORKS_DATA = [
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · วิเคราะห์ศิลปกรรม`,
+        title: `การศึกษาเปรียบเทียบธรรมจักรศิลาสมัยทวารวดีกับศิลปะอมราวดี–คุปตะ`,
+        summary: `งานศึกษาชิ้นนี้เปรียบเทียบธรรมจักรศิลาที่พบในภาคกลางของไทย (นครปฐม–อู่ทอง) กับต้นแบบศิลปะอินเดียใต้และอินเดียภาคเหนือ โดยสังเกตการเปลี่ยนแปลงของลวดลายดอกไม้สี่กลีบ ขอบวงล้อ และแท่นรองรับรูปกวางหมอบ เพื่อทำความเข้าใจการปรับเปลี่ยนเชิงช่างท้องถิ่นทวารวดี`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: สำรวจวัตถุจริง ณ พิพิธภัณฑสถานแห่งชาติ พระปฐมเจดีย์ และเทียบเคียงแนวคิดจากตำราศิลปะสมัยทวารวดีของคณาจารย์คณะโบราณคดี`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/papers/dvaravati-dharmachakra`,
+        deliverable: `ไฟล์ประกอบ: บทความฉบับเต็ม (PDF), ตารางเปรียบเทียบลวดลาย (CSV), ภาพถ่ายพร้อมคำอธิบาย (12 หน้า)`
+      },
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · ภาคสนามโบราณคดี`,
+        title: `บันทึกการสำรวจและสเก็ตช์ผังเจดีย์ทรงพุ่มข้าวบิณฑ์ ณ สุโขทัย`,
+        summary: `การบันทึกภาคสนามด้วยการวาดลายเส้นสัดส่วนสถาปัตยกรรมเจดีย์ทรงพุ่มข้าวบิณฑ์ ตั้งแต่ฐานเขียงสามชั้น มาลัยเถา เรือนธาตุ จนถึงยอดทรงดอกบัวตูม เพื่อวิเคราะห์เอกลักษณ์เชิงช่างสุโขทัยที่พัฒนาขึ้นแตกต่างจากปรางค์ขอม`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: ลงพื้นที่สำรวจอุทยานประวัติศาสตร์สุโขทัย วาดสเก็ตช์ภาคสนามและแปลงเป็นผังเวกเตอร์ SVG เพื่อการเปรียบเทียบ`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/fieldnotes/sukhothai-lotus-stupa`,
+        deliverable: `ไฟล์ประกอบ: สมุดสเก็ตช์ภาคสนาม (PDF), ผังลายเส้นเวกเตอร์ (SVG), บันทึกค่าสัดส่วน`
+      },
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · วิเคราะห์ศิลปกรรม`,
+        title: `ถอดรหัสประติมานวิทยาทับหลังนารายณ์บรรทมสินธุ์ ปราสาทพนมรุ้ง`,
+        summary: `การจัดทำแผนภาพจำแนกตัวละครและสัญลักษณ์ทางศาสนาบนทับหลังนารายณ์บรรทมสินธุ์ อธิบายคติการกำเนิดพระพรหมบนดอกบัวจากพระนาภีของพระนารายณ์ และการผสมผสานอิทธิพลศิลปะขอมแบบบาปวนต่อนครวัด`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: ศึกษาภาพถ่ายความละเอียดสูงร่วมกับบทความวิชาการด้านศิลปะเขมรในประเทศไทย`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/papers/phanom-rung-lintel`,
+        deliverable: `ไฟล์ประกอบ: แผนภาพประติมานวิทยาความละเอียดสูง, บทวิเคราะห์ 8 หน้า`
+      },
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · สื่อดิจิทัลและวิจารณ์`,
+        title: `นิทรรศการเว็บจำลอง: จิตรกรรมฝาผนังสมัยรัตนโกสินทร์ตอนต้น`,
+        summary: `โครงงานสร้างหน้าเว็บขนาดเล็กเพื่อจัดแสดงรายละเอียดจิตรกรรมฝาผนังวัดสุวรรณาราม แยกหมวดหมู่ตามองค์ประกอบเส้นสินเทา การลงสีฝุ่นธรรมชาติ และการเล่าเรื่องทศชาติชาดกให้ผู้อ่านเข้าถึงง่าย`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: พัฒนาด้วย HTML/CSS ร่วมกับการสืบค้นเอกสารบันทึกการอนุรักษ์จิตรกรรมฝาผนัง`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/archive/ratchadamnoen-murals`,
+        deliverable: `ไฟล์ประกอบ: ซอร์สโค้ดเว็บนิทรรศการจำลอง (HTML/CSS), ชุดคำบรรยายภาพ 15 ชุด`
+      },
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · สื่อดิจิทัลและวิจารณ์`,
+        title: `บทวิจารณ์ศิลปะร่วมสมัยไทย: พื้นที่สาธารณะและความทรงจำท้องถิ่น`,
+        summary: `ความเรียงวิจารณ์งานศิลปะจัดวาง (Installation Art) ของศิลปินไทยร่วมสมัยที่หยิบยกวัสดุพื้นถิ่นและสถาปัตยกรรมเก่ามาตั้งคำถามต่อประวัติศาสตร์เมือง เชื่อมโยงองค์ความรู้จากอดีตสู่บริบทปัจจุบัน`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: ชมงานนิทรรศการศิลปะร่วมสมัย ณ หอศิลปวัฒนธรรมแห่งกรุงเทพมหานคร และวิเคราะห์กรอบทฤษฎีศิลปะร่วมสมัย`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/essays/thai-contemporary-art`,
+        deliverable: `ไฟล์ประกอบ: บทความวิจารณ์ศิลปะ 3,200 คำ (Markdown & PDF)`
+      },
+      {
+        kicker: `รายละเอียดผลงานที่เลือก · ภาคสนามโบราณคดี`,
+        title: `ฐานข้อมูลภาพถ่ายโบราณสถานและการจัดทำคำอธิบายภาพ (Cataloguing)`,
+        summary: `การรวบรวมภาพถ่ายโบราณสถานและอาคารอนุรักษ์ย่านพระนคร–วังท่าพระ พร้อมกำหนดชุดข้อมูลเมทาดาทา (ชื่อสถานที่ สมัยศิลปะ วัสดุ วันที่สำรวจ) ในรูปแบบ JSON เพื่อใช้ต่อยอดงานพิพิธภัณฑ์ดิจิทัล`,
+        method: `ระเบียบวิธีและแหล่งอ้างอิง: ออกแบบโครงสร้างข้อมูลตามแนวทางทะเบียนวัตถุพิพิธภัณฑ์เบื้องต้นและทดสอบการสืบค้น`,
+        repo: `github.com/kantacha-phaengpong/su-art-history-eportfolio/tree/main/datasets/rattanakosin-catalog`,
+        deliverable: `ไฟล์ประกอบ: ชุดข้อมูล JSON, คู่มือการลงทะเบียนคำอธิบายภาพ`
+      }
+    ];
+
+    let currentWorkIndex = 0;
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('primary-nav');
+      const btn = document.getElementById('nav-toggle-btn');
+      if (!nav || !btn) return;
+      const isOpen = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    function closeMobileNav() {
+      const nav = document.getElementById('primary-nav');
+      const btn = document.getElementById('nav-toggle-btn');
+      if (!nav || !btn) return;
+      nav.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleGithubDrawer(forceState) {
+      const drawer = document.getElementById('github-drawer');
+      if (!drawer) return;
+      if (typeof forceState === 'boolean') {
+        drawer.classList.toggle('is-open', forceState);
+      } else {
+        drawer.classList.toggle('is-open');
+      }
+      if (drawer.classList.contains('is-open')) {
+        drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      closeMobileNav();
+    }
+
+    function copyTextWithFeedback(text, statusId) {
+      const statusEl = document.getElementById(statusId);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          if (statusEl) statusEl.textContent = `คัดลอกแล้ว: ` + text;
+        }).catch(function() {
+          if (statusEl) statusEl.textContent = `พร้อมใช้งาน: ` + text;
+        });
+      } else if (statusEl) {
+        statusEl.textContent = `พร้อมใช้งาน: ` + text;
+      }
+    }
+
+    function copyRepoPath() {
+      const repoEl = document.getElementById('github-repo-text');
+      if (!repoEl) return;
+      copyTextWithFeedback(repoEl.textContent || ``, 'copy-status');
+    }
+
+    function copySelectedWorkRepo() {
+      const work = WORKS_DATA[currentWorkIndex];
+      if (!work) return;
+      copyTextWithFeedback(work.repo, 'insp-copy-status');
+    }
+
+    function filterWorks(category, btnEl) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(function(b) {
+        b.setAttribute('aria-pressed', 'false');
+      });
+      if (btnEl) btnEl.setAttribute('aria-pressed', 'true');
+
+      const wrappers = document.querySelectorAll('#portfolio-grid .card-wrapper');
+      let firstVisibleIdx = -1;
+      wrappers.forEach(function(wrap, idx) {
+        const match = category === 'all' || wrap.getAttribute('data-category') === category;
+        wrap.style.display = match ? '' : 'none';
+        if (match && firstVisibleIdx === -1) firstVisibleIdx = idx;
+      });
+      if (firstVisibleIdx !== -1) {
+        selectWork(firstVisibleIdx);
+      }
+    }
+
+    function selectWork(index) {
+      const work = WORKS_DATA[index];
+      if (!work) return;
+      currentWorkIndex = index;
+
+      const cards = document.querySelectorAll('.portfolio-card');
+      cards.forEach(function(c) {
+        c.classList.remove('is-selected');
+      });
+      const activeCard = document.getElementById('work-card-' + index);
+      if (activeCard) activeCard.classList.add('is-selected');
+
+      const kickerEl = document.getElementById('insp-kicker');
+      const titleEl = document.getElementById('insp-title');
+      const summaryEl = document.getElementById('insp-summary');
+      const methodEl = document.getElementById('insp-method');
+      const repoEl = document.getElementById('insp-repo');
+      const delivEl = document.getElementById('insp-deliverable');
+      const copyStatusEl = document.getElementById('insp-copy-status');
+
+      if (kickerEl) kickerEl.textContent = work.kicker;
+      if (titleEl) titleEl.textContent = work.title;
+      if (summaryEl) summaryEl.textContent = work.summary;
+      if (methodEl) methodEl.textContent = work.method;
+      if (repoEl) repoEl.textContent = work.repo;
+      if (delivEl) delivEl.textContent = work.deliverable;
+      if (copyStatusEl) copyStatusEl.textContent = ``;
+    }
+
+    function selectWorkAndShowRepo(index) {
+      selectWork(index);
+      const insp = document.getElementById('work-inspector');
+      if (insp) insp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function handleCardKey(event, index) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectWork(index);
+      }
+    }
+
+    function toggleDisclosure(panelId, btnEl) {
+      const panel = document.getElementById(panelId);
+      if (!panel || !btnEl) return;
+      const isOpen = panel.classList.toggle('is-open');
+      btnEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        revealEls.forEach(function(el) {
+          observer.observe(el);
+        });
+      } else {
+        revealEls.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      }
+
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = ['hero', 'about', 'portfolio', 'activities'];
+      if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach(function(link) {
+                const target = link.getAttribute('href');
+                link.classList.toggle('is-active', target === '#' + id);
+              });
+            }
+          });
+        }, { threshold: 0.35 });
+        sections.forEach(function(id) {
+          const sec = document.getElementById(id);
+          if (sec) navObserver.observe(sec);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
